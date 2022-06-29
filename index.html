@@ -34,6 +34,40 @@
                         </tr>
                     </tbody>
                 </table>
+                <button class="new-book-btn">Add New Book</button>
+                <form class="new-book-form" name="new-book-form" action="#">
+                    <div class="form-row form-row-right">
+                        <a class="close-form-link" href="#">&#x2715</a>
+                    </div>
+                    <div class="form-row">
+                        <label for="bookTitle">Title: </label>
+                        <input type="text" name="bookTitle" id="bookTitle" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="bookAuthor">Author: </label>
+                        <input type="text" name="bookAuthor" id="bookAuthor" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="bookNumPages">Number of Pages: </label>
+                        <input type="number" name="bookNumPages" id="bookNumPages">
+                    </div>
+                    <div class="form-row">
+                        <fieldset class="readStatusFieldSet">
+                            <legend>Have you read this book?</legend>
+                            <div class="radio-row">
+                                <input type="radio" name="bookReadStatus" id="haveRead" value="true">
+                                <label for="haveRead">Have Read</label>
+                            </div>
+                            <div class="radio-row">
+                                <input type="radio" name="bookReadStatus" id="haveNotRead" value="false" checked>
+                                <label for="haveNotRead">Have Not Read</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="form-row form-row-right">
+                        <button type="button" class="new-book-form-submit-btn">Add to Library</button>
+                    </div>
+                </form>
             </div>
 
         </main>

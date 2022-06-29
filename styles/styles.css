@@ -1,3 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    width: fit-content;
+}
+
+/**
+Layout
+**/
 .container {
     display: flex;
     flex-direction: column;
@@ -9,6 +21,14 @@ main {
     flex: 1;
 }
 
+/**
+Library Display
+**/
+.library-display {
+    display: flex;
+    flex-direction: column;
+}
+
 .library-table {
     width: 100%;
 }
@@ -18,4 +38,48 @@ main {
 tr,
 td {
     border: solid 1px black;
+}
+
+/**
+New Book Button and Form
+**/
+.new-book-btn {
+    align-self: flex-end;
+}
+
+.new-book-form {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    justify-content: space-between;
+
+    margin: 0 auto;
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    display: none;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.form-row-right {
+    justify-content: flex-end;
+}
+
+.readStatusFieldSet {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.close-form-link {
+    color: gray;
+    padding: 5px;
+    text-decoration: none;
+    border: solid 0.5px gray;
 }
