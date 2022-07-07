@@ -91,7 +91,6 @@ function addBooktoDisplay(index, book) {
 function updateReadStatus(){
     let index = this.getAttribute("data-key");
     myLibrary[index].haveRead = this.value=="true";
-    console.log(myLibrary[index]);
 }
 
 /**
