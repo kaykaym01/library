@@ -51,7 +51,25 @@ function addBooktoDisplay(index, book) {
     newRow.append(bookNumPages);
 
     let bookReadStatus = document.createElement("td");
-    bookReadStatus.textContent = (book.haveRead) ? "Have Read" : "Have Not Read";
+    let bookReadDropdown = document.createElement("select");
+    bookReadDropdown.addEventListener("change", updateReadStatus);
+    bookReadDropdown.setAttribute("name", "readStatus");
+    bookReadDropdown.setAttribute("data-key", index);
+    bookReadDropdown.classList.add("book-read-dropdown");
+    
+    let haveRead = document.createElement("option");
+    haveRead.setAttribute("value", "true");
+    haveRead.textContent = "Have Read";
+    bookReadDropdown.append(haveRead);
+
+    let haveNotRead = document.createElement("option");
+    haveNotRead.setAttribute("value", "false");
+    haveNotRead.textContent = "Have Not Read";
+    bookReadDropdown.append(haveNotRead);
+
+    bookReadDropdown.value = (book.haveRead) ? "true" : "false";
+
+    bookReadStatus.append(bookReadDropdown);
     newRow.append(bookReadStatus);
 
     let bookDelete = document.createElement("td");
@@ -64,6 +82,16 @@ function addBooktoDisplay(index, book) {
     newRow.append(bookDelete);
 
     libraryTable.append(newRow);
+}
+
+/**
+ * 
+ * Updates the read status of the book in the library from dropdown
+ */
+function updateReadStatus(){
+    let index = this.getAttribute("data-key");
+    myLibrary[index].haveRead = this.value=="true";
+    console.log(myLibrary[index]);
 }
 
 /**
