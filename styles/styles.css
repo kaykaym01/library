@@ -40,6 +40,10 @@ td {
     border: solid 1px black;
 }
 
+.delete-btn{
+    color: red;
+}
+
 /**
 New Book Button and Form
 **/

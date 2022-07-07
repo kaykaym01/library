@@ -29,30 +29,50 @@ function addBookToLibrary(title, author, numPages, haveRead) {
 
 /**
  * Adds a book to the library display
+ * @param {number} index
  * @param {Book} book 
  */
-function addBooktoDisplay(book) {
-    libraryTable = document.querySelector(".library-table tbody");
-    newRow = document.createElement("tr");
+function addBooktoDisplay(index, book) {
+    let libraryTable = document.querySelector(".library-table tbody");
+    let newRow = document.createElement("tr");
     newRow.classList.add("library-row")
+    newRow.setAttribute("data-key", index);
 
-    bookTitle = document.createElement("td");
+    let bookTitle = document.createElement("td");
     bookTitle.textContent = book.title;
     newRow.append(bookTitle);
 
-    bookAuthor = document.createElement("td");
+    let bookAuthor = document.createElement("td");
     bookAuthor.textContent = book.author;
     newRow.append(bookAuthor);
 
-    bookNumPages = document.createElement("td");
+    let bookNumPages = document.createElement("td");
     bookNumPages.textContent = book.numPages;
     newRow.append(bookNumPages);
 
-    bookReadStatus = document.createElement("td");
+    let bookReadStatus = document.createElement("td");
     bookReadStatus.textContent = (book.haveRead) ? "Have Read" : "Have Not Read";
     newRow.append(bookReadStatus);
 
+    let bookDelete = document.createElement("td");
+    let bookDeleteBtn = document.createElement("button");
+    bookDeleteBtn.textContent = "Delete";
+    bookDeleteBtn.classList.add("delete-btn");
+    bookDeleteBtn.addEventListener("click", deleteBook);
+    bookDeleteBtn.setAttribute("data-key", index);
+    bookDelete.append(bookDeleteBtn);
+    newRow.append(bookDelete);
+
     libraryTable.append(newRow);
+}
+
+/**
+ * Removes a book from the library using the data-key attribute
+ */
+function deleteBook(e) {
+    let index = this.getAttribute("data-key");
+    myLibrary.splice(index, 1);
+    displayLibrary();
 }
 
 /**
@@ -70,16 +90,16 @@ function clearLibraryDisplay() {
  */
 function displayLibrary() {
     clearLibraryDisplay();
-    myLibrary.forEach(book => {
-        addBooktoDisplay(book);
-    })
+    for (const [index, book] of myLibrary.entries()) {
+        addBooktoDisplay(index, book);
+    }
 }
 
 /**
  * Shows the form to add new books
  */
 function showNewBookForm() {
-    newBookForm = document.querySelector(".new-book-form");
+    let newBookForm = document.querySelector(".new-book-form");
     newBookForm.style.display = "block";
 }
 
@@ -87,7 +107,7 @@ function showNewBookForm() {
  * Hides the form to add new books
  */
 function hideNewBookForm() {
-    newBookForm = document.querySelector(".new-book-form");
+    let newBookForm = document.querySelector(".new-book-form");
     newBookForm.style.display = "none";
 }
 
@@ -128,11 +148,16 @@ function clickToAddToLibrary() {
     }
 }
 
-addNewBookButton = document.querySelector(".new-book-btn");
+let addNewBookButton = document.querySelector(".new-book-btn");
 addNewBookButton.addEventListener("click", showNewBookForm);
 
-closeNewBookLink = document.querySelector(".close-form-link");
+let closeNewBookLink = document.querySelector(".close-form-link");
 closeNewBookLink.addEventListener("click", hideNewBookForm);
 
-addToLibraryButton = document.querySelector(".new-book-form-submit-btn");
+let addToLibraryButton = document.querySelector(".new-book-form-submit-btn");
 addToLibraryButton.addEventListener("click", clickToAddToLibrary);
+
+// Add some books to the library
+addBookToLibrary("Parable of the Sower", "Octavia Butler", 309, true);
+addBookToLibrary("Sister Outsider", "Audre Lorde", 225, false);
+displayLibrary();
