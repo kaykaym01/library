@@ -56,7 +56,7 @@ function addBooktoDisplay(index, book) {
     bookReadDropdown.setAttribute("name", "readStatus");
     bookReadDropdown.setAttribute("data-key", index);
     bookReadDropdown.classList.add("book-read-dropdown");
-    
+
     let haveRead = document.createElement("option");
     haveRead.setAttribute("value", "true");
     haveRead.textContent = "Have Read";
@@ -88,9 +88,9 @@ function addBooktoDisplay(index, book) {
  * 
  * Updates the read status of the book in the library from dropdown
  */
-function updateReadStatus(){
+function updateReadStatus() {
     let index = this.getAttribute("data-key");
-    myLibrary[index].haveRead = this.value=="true";
+    myLibrary[index].haveRead = this.value == "true";
 }
 
 /**
@@ -171,7 +171,7 @@ function clickToAddToLibrary() {
         newBookForm.elements["bookTitle"].value = "";
         newBookForm.elements["bookAuthor"].value = "";
         newBookForm.elements["bookNumPages"].value = "";
-        newBookForm.elements["bookReadStatus"].value = "";
+        newBookForm.elements["bookReadStatus"].value = "false";
     }
 }
 
